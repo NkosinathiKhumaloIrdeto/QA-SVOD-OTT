@@ -8,7 +8,7 @@ public class NotProcessedException extends Exception{
   
 }
 
-File txtFile = new File("../automation/folders_SVODSTB.txt");
+File txtFile = new File("../automation/folders_SVODOTT.txt");
 
 if(txtFile.exists()){
 
@@ -50,7 +50,7 @@ def networkPath =  "collections/collection1.json"
 //put values in array
 def vals = [svodGenref,svoduid,svodSeriesId, svodSeasonId]
 
-def keys = ["{#Project#svodGenref}","{#Project#svoduid}","{#Project#SVODseriesid}", "{#Project#SVODseasonid}"]
+def keys = ["{#Project#SVODOTTgenref}","{#Project#SVODOTTuid}","{#Project#SVODOTTseriesid}", "{#Project#SVODOTTseasonid}"]
 
 def key = keys[0]
 
@@ -81,7 +81,7 @@ def extImg =  soureFileImg.substring(soureFileImg.length() - 4)
 def seriesIdImg = svodSeriesId
 
 def srcStreamImg = new File(soureFileImg).newDataInputStream()
-def dstStreamImg = new File(destFileImg + svodSeriesId + extImg).newDataOutputStream()
+def dstStreamImg = new File(destFileImg + svodSeriesId+ "_PP" + extImg).newDataOutputStream()
 dstStreamImg << srcStreamImg
 srcStreamImg.close()
 dstStreamImg.close()
@@ -118,42 +118,19 @@ println ""
 println "=================================================================="
 println ""
 
-  
+  /*
 if (checkDir("../automation/")){
     logFolders(svodGenref)    
-  }
-
-
-
+} */
 
 def logFolders(genref){
 
-  File file = new File("../automation/folders_SVODSTB.txt")
+  File file = new File("../automation/folders_SVODOTT.txt")
   
   file.text = ''
  
   file << genref + "_" + "11103\n" +  genref + "_" + "11203\n" +  genref + "_" + "11303\n" +  genref + "_" + "11403"
   
-}
-
-//Update file for approval
-
-//check if dir exists
-if(checkDir("../automation/collections/")){
-
-  def jsonContents = new File("collections/SVOD-STB-APPROVE-ALL.json").getText()
-  def jsonFilePath = "../automation/collections/SVOD-STB-APPROVE-ALL1.json"
-
-  jsonContents = jsonContents.replace("{genref}",svodGenref);
-
-  File jsonFile = new File(jsonFilePath)
-
-  jsonFile.text = jsonContents
-
-} else {
-
-throw new IOException("Folder path not found: " + "../automation/collections/")
-
 }
 
 def checkDir(def path){
