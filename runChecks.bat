@@ -1,1 +1,1 @@
-"bat/runCheckFiles.bat" && "bat/run send approval.bat"
+"bat/runCheckFiles.bat"
