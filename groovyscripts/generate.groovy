@@ -146,3 +146,23 @@ def folder = new File( path )
 
   return true
 }
+
+
+//check if dir exists
+if(checkDir("../automation/collections/")){
+
+  def jsonContents = new File("collections/Collection_MVP.postman_collection.json").getText()
+  def jsonFilePath = "../automation/collections/Collection_MVP_SVODOTT.postman_collection_1.json"
+
+  jsonContents = jsonContents.replace("{genref}",svodGenref);
+
+  File jsonFile = new File(jsonFilePath)
+
+  jsonFile.text = jsonContents
+
+} else {
+
+throw new IOException("Folder path not found: " + "../automation/collections/")
+
+}
+

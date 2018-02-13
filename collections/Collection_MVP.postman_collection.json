@@ -1,0 +1,50 @@
+{
+	"info": {
+		"name": "SVOD-OTT-FILES",
+		"_postman_id": "a265ffc5-5d7e-b156-254f-1b53a670dcdf",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "SVOD-OTT-FILES",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f875a340-ab74-4e0f-9260-f9b2d09f3469",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Should have 5 Files\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.total).to.above(4);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://172.16.103.244:8081/ds-pay-vod/videoAsset;filterField=externalReference.genRef;externalReference.genRefFilterValue={genref}",
+					"protocol": "http",
+					"host": [
+						"172",
+						"16",
+						"103",
+						"244"
+					],
+					"port": "8081",
+					"path": [
+						"ds-pay-vod",
+						"videoAsset;filterField=externalReference.genRef;externalReference.genRefFilterValue={genref}"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
